@@ -19,7 +19,6 @@ RUN apk add \
     build-base \
     jpeg-dev \
     python3-dev \
-    py3-pip \
     bash \
     vim \
     ffmpeg \
@@ -30,7 +29,7 @@ RUN apk add \
 #RUN python3 -m venv python-env
 #RUN source python-env/bin/activate
 #RUN python3 -m ensurepip
-RUN pip3 install --no-cache --upgrade pip setuptools
+RUN pip3 install --no-cache --upgrade --break-system-packages pip setuptools
 
 # Install PixivUtil2
 RUN \
@@ -42,7 +41,7 @@ RUN \
     && \
     ls -al \
     && \
-    pip3 install -r requirements.txt \
+    pip3 install --break-system-packages -r requirements.txt \
     && \
     apk del curl \
     && \
