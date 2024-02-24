@@ -19,6 +19,7 @@ RUN apk add \
     build-base \
     jpeg-dev \
     python3-dev \
+    py3-pip \
     bash \
     vim \
     ffmpeg \
