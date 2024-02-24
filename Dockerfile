@@ -19,6 +19,7 @@ RUN apk add \
     build-base \
     jpeg-dev \
     python3-dev \
+    py3-pip \
     bash \
     vim \
     ffmpeg \
@@ -26,9 +27,9 @@ RUN apk add \
     ln -sf python3 /usr/bin/python
 
 # Setup pip
-RUN python3 -m venv python-env
-RUN source python-env/bin/activate
-RUN python3 -m ensurepip
+#RUN python3 -m venv python-env
+#RUN source python-env/bin/activate
+#RUN python3 -m ensurepip
 RUN pip3 install --no-cache --upgrade pip setuptools
 
 # Install PixivUtil2
