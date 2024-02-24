@@ -52,23 +52,26 @@ RUN adduser -D -u 99 -G users pixivUser \
     chown -R nobody:nobody /opt/PixivUtil2 \
     && \
     chmod 777 /opt/PixivUtil2
-ADD crontab.txt /crontab.txt
-ADD pixivAuto.sh /pixivAuto.sh
+    
+COPY pixivAuto.sh /pixivAuto.sh
 COPY cronInit.sh /cronInit.sh
-RUN chmod 777 /pixivAuto.sh /cronInit.sh /crontab.txt \
-    && \
-    /usr/bin/crontab -u pixivUser /crontab.txt
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod 700 /pixivAuto.sh /cronInit.sh /entrypoint.sh
+RUN chown root:root /cronInit.sh
+RUN chown root:root /entrypoint.sh
+RUN chown pixivUser:users /pixivAuto.sh
 
 # Define mountable directories.
 VOLUME ["/config"]
 VOLUME ["/storage"]
 
-CMD ["/cronInit.sh"]
+#CMD ["/cronInit.sh"]
+ENTRYPOINT [ "/entrypoint.sh" ]
 
 # Metadata.
 LABEL \
       org.label-schema.name="PixivUtil2" \
       org.label-schema.description="Docker container for PixivUtil2" \
       org.label-schema.version="$DOCKER_IMAGE_VERSION" \
-      org.label-schema.vcs-url="https://github.com/Gin-no-kami/docker-pixivutil2/" \
+      org.label-schema.vcs-url="https://github.com/Chloe-ko/docker-pixivutil2/" \
       org.label-schema.schema-version="1.0"
