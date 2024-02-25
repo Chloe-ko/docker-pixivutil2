@@ -3,7 +3,7 @@ umask 000
 
 # Set args
 if [ -z "$ARGS" ]; then
-ARGS='-s 4 -f /config/member_list.txt -x'
+ARGS='-s 4 -f /config/member_list.txt'
 fi
 args=( $ARGS )
 
@@ -18,6 +18,6 @@ if [ -f /.pid ]; then
     fi
 fi
 
-python /opt/PixivUtil2/PixivUtil2.py -c /config/config.ini "${args[@]}" &
+python /opt/PixivUtil2/PixivUtil2.py -c /config/config.ini "${args[@]} -x" &
 PROGRAM_PID=$!
 echo $PROGRAM_PID > /config/.pid
