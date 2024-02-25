@@ -19,7 +19,7 @@ if [ -f /.pid ]; then
     fi
 fi
 
-echo Running: 'python /opt/PixivUtil2/PixivUtil2.py -c /config/config.ini -x "${args[@]}'"
+echo "Running: 'python /opt/PixivUtil2/PixivUtil2.py -c /config/config.ini -x \"${args[@]}'\""
 python /opt/PixivUtil2/PixivUtil2.py -c /config/config.ini -x "${args[@]}" &
 PROGRAM_PID=$!
 echo $PROGRAM_PID > /config/.pid
