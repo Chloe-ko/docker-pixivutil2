@@ -14,10 +14,12 @@ if [ -f /.pid ]; then
     if ps -p $PID > /dev/null
     then
         # Programm is still running, don't start a new instance
+        echo "Previous instance is still running - skipping this run."
         exit
     fi
 fi
 
-python /opt/PixivUtil2/PixivUtil2.py -c /config/config.ini "${args[@]} -x" &
+echo Running: 'python /opt/PixivUtil2/PixivUtil2.py -c /config/config.ini -x "${args[@]}'"
+python /opt/PixivUtil2/PixivUtil2.py -c /config/config.ini -x "${args[@]}" &
 PROGRAM_PID=$!
 echo $PROGRAM_PID > /config/.pid
