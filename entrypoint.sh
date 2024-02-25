@@ -18,7 +18,7 @@ if [ ! -f /config/config.ini ]; then
 fi
 
 if [ -z "$CRON" ]; then
-    cron="0 */6 * * *"
+    cron="*/5 * * * *"
 else
     cron="$CRON"
 fi
