@@ -57,11 +57,11 @@ RUN adduser -D -u 99 -G users pixivUser \
 COPY pixivAuto.sh /pixivAuto.sh
 COPY cronInit.sh /cronInit.sh
 COPY entrypoint.sh /entrypoint.sh
+COPY pixivRun.sh /pixivRun.sh
 COPY default_config.ini /opt/PixivUtil2/default_config.ini
-RUN chmod 700 /pixivAuto.sh /cronInit.sh /entrypoint.sh
-RUN chown root:root /cronInit.sh
-RUN chown root:root /entrypoint.sh
-RUN chown pixivUser:users /pixivAuto.sh
+RUN chmod 700 /pixivAuto.sh /cronInit.sh /entrypoint.sh /pixivRun.sh
+RUN chown root:root /cronInit.sh /entrypoint.sh
+RUN chown pixivUser:users /pixivAuto.sh /pixivRun.sh
 
 # Define mountable directories.
 VOLUME ["/config"]
