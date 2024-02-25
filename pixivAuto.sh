@@ -1,5 +1,5 @@
 #!/bin/bash
-umask 000
+umask 2000
 
 # Set args
 if [ -z "$ARGS" ]; then
