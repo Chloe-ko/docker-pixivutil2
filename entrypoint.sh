@@ -4,10 +4,17 @@
 
 mkdir -p /config
 mkdir -p /storage
+mkdir -p /temp
 
 # Make sure our user owns the folders
 
-chown pixivUser:users /config /storage
+chown pixivUser:users /config /storage /temp
+
+# We are at container startup, so if the .active file from a previous run still exists, delete it
+
+if [ -f /temp/.active ]; then
+    rm /temp/.active
+fi
 
 # Check if config file already exists, if not, copy over the default configuration file and exit
 if [ ! -f /config/config.ini ]; then
